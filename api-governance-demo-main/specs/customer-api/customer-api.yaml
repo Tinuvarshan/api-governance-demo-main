@@ -1,0 +1,43 @@
+openapi: 3.1.0
+
+info:
+  title: Customer API
+  version: 1.0.0
+  description: Customer API - governance validation demo; automated workflow test
+
+servers:
+  - url: https://api.example.com/v1/shanil
+
+paths:
+  /customers/{id}:
+    get:
+      summary: Get customer
+      description: Retrieves customer details using the customer ID.
+
+      security:
+        - bearerAuth: []
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: Customer retrieved successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Customer not found
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
